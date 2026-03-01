@@ -1,136 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What We Do — JPIA UE Caloocan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What We Do — JPIA UE Caloocan</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+<style>
+/* ---------- BASE ---------- */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+body {background:#f5f5f5; color:#022f2b; line-height:1.7;}
+a {text-decoration:none; color:inherit;}
+img {max-width:100%; display:block;}
 
-        body {
-            background: #f5f5f5;
-            color: #022f2b;
-        }
+/* ---------- NAVBAR ---------- */
+.navbar {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:15px 50px; position:fixed; width:100%; top:0;
+    background:rgba(0,0,0,0.2); backdrop-filter:blur(10px); z-index:1000;
+}
+.logo {display:flex; align-items:center; gap:10px; color:white;}
+.logo img {width:40px;}
+.nav-links {display:flex; gap:30px;}
+.nav-links a {text-decoration:none; color:white; font-size:14px;}
+.join-btn {background:#d4af37; color:#022f2b; padding:8px 20px; border-radius:20px; font-size:13px;}
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 60px 0;
-        }
+/* ---------- HERO ---------- */
+.hero {
+    height:50vh; display:flex; align-items:center; justify-content:center;
+    padding:120px 20px; background: linear-gradient(to bottom, #0D5C5C, #022f2b); color:white; text-align:center;
+}
+.hero h1 {font-family:'Playfair Display', serif; font-size:50px; margin-bottom:15px;}
+.hero p {font-size:20px; opacity:0.9; max-width:700px; margin:0 auto; line-height:1.5;}
 
-        h1.section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            text-align: center;
-            color: #0D5C5C;
-            margin-bottom: 10px;
-        }
+/* ---------- SECTION ---------- */
+.section {
+    max-width:1000px; margin:0 auto; padding:60px 20px; display:flex; flex-direction:column; gap:50px;
+}
+.section h2 {
+    font-family:'Playfair Display', serif; color:#0D5C5C; font-size:36px; text-align:center; margin-bottom:40px;
+    position:relative;
+}
+.section h2::after {
+    content:""; display:block; width:60px; height:3px; background:#d4af37; margin:15px auto 0; border-radius:3px;
+}
+.section-content {display:flex; flex-direction:column; gap:25px;}
 
-        p.section-subtitle {
-            text-align: center;
-            font-size: 16px;
-            opacity: 0.8;
-            margin-bottom: 40px;
-        }
+/* ---------- TEXT BLOCK ---------- */
+.text-block h3 {color:rgb(26 43 74 / var(--tw-text-opacity, 1)); font-size:33px; margin-bottom:10px;}
+.text-block h4 {color:rgb(26 43 74 / var(--tw-text-opacity, 1)); font-size:33px; margin-bottom:10px;}
+.text-block p {font-size:16px; opacity:0.85; line-height:1.6;}
 
-        .services-grid {
-            display: grid;
-            gap: 40px;
-            grid-template-columns: 1fr 1fr;
-        }
+/* ---------- OBJECTIVES ---------- */
+.objectives {display:flex; flex-wrap:wrap; gap:20px; justify-content:space-between; margin-top:20px;}
+.objective {background:white; padding:20px; border-radius:15px; flex:1; min-width:280px; box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+.objective h4 {color:#0D5C5C; font-size:20px; margin-bottom:8px;}
 
-        .service-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        }
+/* ---------- GOALS ---------- */
+.goals {display:flex; flex-wrap:wrap; gap:20px; justify-content:space-between;}
+.goal {background:#022f2b; color:white; padding:25px; border-radius:15px; flex:1; min-width:280px; text-align:center;}
+.goal h4 {color:#d4af37; font-size:22px; margin-bottom:12px;}
 
-        .service-card img {
-            width: 60px;
-            height: 60px;
-        }
+.advocacy-wrapper {
+    background: rgb(26 43 74);
+    padding: 80px 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+}
 
-        .service-content h3 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #0D5C5C;
-        }
+.advocacy-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: #d4af37; /* gold accent */
+    text-align: center;
+    margin-bottom: 10px;
+}
 
-        .service-content p {
-            font-size: 14px;
-            opacity: 0.8;
-        }
+.advocacy-header h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #ffffff;
+    opacity: 0.85;
+    text-align: center;
+    margin-bottom: 50px;
+}
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+.advocacy-list {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
-            h1.section-title {
-                font-size: 38px;
-            }
-        }
-    </style>
+.advocacy-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 280px;
+    text-align: center;
+    gap: 15px;
+}
+
+.advocacy-item img {
+    width: 300px;      /* fixed width */
+    height: 200px;     /* fixed height */
+    border-radius: 15px; 
+    object-fit: cover;  /* makes sure image fills the box nicely */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advocacy-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.advocacy-item h4 {
+    font-size: 22px;
+    color: #f7e39c; /* lighter gold for text */
+    font-weight: 600;
+}
+
+.advocacy-item p {
+    font-size: 15px;
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+/* Center CTA button */
+.center-btn {
+    text-align: center;
+}
+
+.btn-green {
+    background: white;
+    color: #0D5C5C;
+    border: 2px solid #0D5C5C;
+    padding: 12px 35px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-green:hover {
+    background: #0D5C5C;
+    color: white;
+    border-color: #0D5C5C;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .advocacy-list {
+        flex-direction: column;
+        gap: 50px;
+        align-items: center;
+    }
+}
+
+/* Center CTA button */
+.center-btn {
+    text-align: center;
+}
+
+.btn-green {
+    background: white;
+    color: #0D5C5C;
+    border: 2px solid #0D5C5C;
+    padding: 12px 35px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-green:hover {
+    background: #0D5C5C;
+    color: white;
+    border-color: #0D5C5C;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .advocacy-list {
+        gap: 40px;
+    }
+    .advocacy-item {
+        max-width: 250px;
+    }
+    .advocacy-item img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* ---------- CTA ---------- */
+.center-btn {text-align:center; margin:60px 0;}
+.btn-green {background:white; color:#0D5C5C; border:2px solid #0D5C5C; padding:14px 40px; border-radius:30px; font-size:18px; font-weight:600; text-decoration:none; display:inline-block; transition:all 0.3s ease;}
+.btn-green:hover {background:#0D5C5C; color:white; transform:translateY(-2px); box-shadow:0 6px 12px rgba(0,0,0,0.2);}
+
+/* ---------- FOOTER ---------- */
+/* FOOTER */
+.footer {
+    background: linear-gradient(to bottom, #0D5C5C, #022f2b);
+    color: white;
+    padding: 60px 80px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+}
+
+.footer-column {
+    max-width: 280px;
+}
+
+.footer-column h4 {
+    margin-bottom: 15px;
+    color: #d4af37;
+    font-weight: 600;
+}
+
+.footer-column p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+/* FOOTER LOGO */
+.footer-logo {
+    width: 250px;
+    height: 250px;
+
+    
+}
+
+/* Footer Nav Links */
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #d4af37; /* gold hover effect */
+    opacity: 1;
+}
+/* FOOTER BOTTOM */
+.footer-bottom {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+    .objectives,.goals,.advocacy {flex-direction:column; align-items:center;}
+    .navbar {flex-direction:column; gap:15px; padding:15px 20px;}
+    .nav-links {flex-wrap:wrap; justify-content:center; gap:15px;}
+}
+</style>
 </head>
 <body>
 
-    <!-- WHAT WE DO HEADER -->
-    <div class="container">
-        <h1 class="section-title">What We Do</h1>
-        <p class="section-subtitle">Empowering students through excellence, leadership, and professional growth.</p>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">
+        <img src="images/logo.png">
+        <span>JPIA<br><small>UE Caloocan</small></span>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="what we do.html">What We Do</a>
+        <a href="activities.html">Activities</a>
+        <a href="members.html">Members</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <a href="#" class="join-btn">Join Us</a>
+</div>
 
-        <!-- SERVICES GRID -->
-        <div class="services-grid">
+<!-- HERO -->
+<section class="hero">
+    <div>
+        <h1>What We Do</h1>
+        <p>Empowering future accounting professionals through excellence, leadership, and meaningful service to our community.</p>
+    </div>
+</section>
 
-            <div class="service-card">
-                <img src="images/mission-icon.png" alt="Mission Icon">
-                <div class="service-content">
-                    <h3>Our Mission & Vision</h3>
-                    <p>We cultivate academic excellence and professional leadership among students through meaningful programs and community initiatives.</p>
-                </div>
-            </div>
+<!-- PURPOSE -->
+<section class="section">
+    <h2>Our Purpose</h2>
+    <div class="section-content text-block">
+        <h3>Why JPIA Exists</h3>
+        <p>The Junior Philippine Institute of Accountants - UE Caloocan Chapter exists to bridge the gap between academic learning and professional practice in accounting.</p>
+        <p>We are dedicated to creating a nurturing environment where students can flourish academically and personally, develop essential leadership skills, and build lasting connections within the accounting profession. Through our programs and activities, we ignite the flame of excellence in every member, preparing them to become competent, ethical, and socially responsible accounting professionals.</p>
+    </div>
+</section>
 
-            <div class="service-card">
-                <img src="images/leadership-icon.png" alt="Leadership Icon">
-                <div class="service-content">
-                    <h3>Leadership Development</h3>
-                    <p>Providing leadership workshops and trainings to prepare our members to excel in their careers and personal growth.</p>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <img src="images/events-icon.png" alt="Events Icon">
-                <div class="service-content">
-                    <h3>Events & Activities</h3>
-                    <p>Organizing events that enrich student engagement, foster collaboration, and inspire creativity within our community.</p>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <img src="images/membership-icon.png" alt="Membership Icon">
-                <div class="service-content">
-                    <h3>Membership Support</h3>
-                    <p>Encouraging student involvement with dedicated support systems and networking opportunities to help members thrive.</p>
-                </div>
-            </div>
-
+<!-- OBJECTIVES -->
+<section class="section">
+    <h2>Our Objectives</h2>
+    <div class="section-content text-block">
+        <h4>What We Aim to Achieve</h4>
+        <div class="objectives">
+            <div class="objective"><h4>Academic Excellence</h4><p>To uphold and promote the highest standards of academic achievement in accounting education, preparing students for professional success.</p></div>
+            <div class="objective"><h4>Leadership Development</h4><p>To cultivate strong, ethical leaders who demonstrate commitment, integrity, and the ability to inspire positive change.</p></div>
+            <div class="objective"><h4>Skill Enhancement</h4><p>To provide equal opportunities for members to showcase and develop their talents across various academic and non-academic fields.</p></div>
+            <div class="objective"><h4>Community Engagement</h4><p>To foster active participation in community service and outreach programs that create meaningful impact.</p></div>
+            <div class="objective"><h4>Professional Networking</h4><p>To establish connections with industry professionals and create pathways for career advancement in accounting.</p></div>
+            <div class="objective"><h4>Holistic Development</h4><p>To nurture versatile individuals who excel both academically and personally, ready to face real-world challenges.</p></div>
         </div>
     </div>
+</section>
+
+<!-- GOALS -->
+<section class="section">
+    <h2>Our Goals</h2>
+    <div class="section-content text-block">
+        <h4>Strategic Priorities</h4>
+        <div class="goals">
+            <div class="goal"><h4>01 Competency Building</h4><p>Develop highly competent accounting professionals through rigorous training, workshops, and seminars that align with industry standards and emerging trends.</p></div>
+            <div class="goal"><h4>02 Student Empowerment</h4><p>Create dynamic platforms for student involvement through effective activities, competitions, and collaborative projects that enhance practical skills.</p></div>
+            <div class="goal"><h4>03 Excellence Culture</h4><p>Establish and maintain a culture of excellence in all organizational ventures, setting benchmarks for quality and achievement.</p></div>
+            <div class="goal"><h4>04 Democratic Leadership</h4><p>Build pillars of democratic and student-centered leadership that prioritize inclusivity, transparency, and collective decision-making.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- OUR ADVOCACY -->
+<section class="advocacy-wrapper">
+    <div class="advocacy-header">
+        <h3>OUR ADVOCACY</h3>
+        <h4>Causes We Champion</h4>
+    </div>
+
+    <div class="advocacy-list">
+        <div class="advocacy-item">
+            <img src="https://image2url.com/r2/default/images/1772374133191-61ae720d-3aaf-4336-8dd1-32ea43136776.png" alt="Financial Literacy" >
+            <h4>Financial Literacy Advocacy</h4>
+            <p>Promoting financial education and awareness in communities, helping individuals make informed financial decisions.</p>
+        </div>
+        <div class="advocacy-item">
+            <img src="https://image2url.com/r2/default/images/1772374197030-71ef60bb-4c6f-440a-803d-6686c54c7bb2.png" alt="Ethical Accounting">
+            <h4>Ethical Accounting Practices</h4>
+            <p>Championing integrity, transparency, and ethical standards in the accounting profession and business practices.</p>
+        </div>
+        <div class="advocacy-item">
+            <img src="https://image2url.com/r2/default/images/1772374260259-bfcfc96b-c515-4ebc-8e92-495258843b2f.png" alt="Youth Empowerment">
+            <h4>Youth Empowerment Program</h4>
+            <p>Inspiring and equipping young individuals with skills, knowledge, and confidence to pursue excellence in their chosen paths.</p>
+        </div>
+    </div>
+
+    <div class="center-btn">
+        <a href="#" class="btn-green">Join the MALASINAG Movement</a>
+    </div>
+</section>
+
+
+
+
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+
+        <!-- JPIA Logo Solo on Left -->
+         
+         <img src="images/logo.png" alt="JPIA Logo" class="footer-logo">
+        <div class="footer-column logo-col">
+            
+            <h4>JPIA</h4>
+            <p>UE Caloocan</p>
+            <p>Developing future accounting professionals through academic excellence and leadership.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-column">
+    <h4>Quick Links</h4>
+    <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="what we do.html">What We Do</a>
+        <a href="activities.html">Activities</a>
+        <a href="members.html">Members</a>
+        <a href="news.html">News</a>
+        <a href="developers.html">Developers</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</div>
+
+        <!-- Developers & Contact -->
+        <div class="footer-column">
+            <h4>Developers</h4>
+            <p>Contact</p>
+            <p>jpia.uecaloocan@gmail.com</p>
+            <p>+63 123 456 7890</p>
+            <p>University of the East Caloocan Campus, Caloocan City, Philippines</p>
+        </div>
+
+      
+
+    <div class="footer-bottom">
+        © 2025 JPIA UE Caloocan | MALASINAG Administration
+    </div>
+</footer>
 
 </body>
 </html>

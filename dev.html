@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developers — JPIA UE Caloocan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+:root {
+  --green-dark: #022f2b;
+  --green-mid: #0D5C5C;
+  --gold: #d4af37;
+  --gold-light: #f7e39c;
+  --gold-dim: rgba(212, 175, 55, 0.15);
+  --off-white: #f5f5f5;
+}
+
+body { background: var(--off-white); overflow-x: hidden; }
+
+/* ── NAVBAR ── */
+.navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 50px; position: fixed; width: 100%; top: 0;
+  background: rgba(0,0,0,0.2); backdrop-filter: blur(10px); z-index: 1000;
+}
+.logo { display: flex; align-items: center; gap: 10px; color: white; }
+.logo img { width: 40px; }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { text-decoration: none; color: white; font-size: 14px; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.join-btn {
+  background: var(--gold); color: var(--green-dark);
+  padding: 8px 20px; border-radius: 20px; font-size: 13px;
+  font-weight: 600; text-decoration: none;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 50vh;
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-dark) 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 120px 40px 80px; text-align: center; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(212,175,55,0.08) 0%, transparent 70%);
+}
+.hero::after {
+  content: ''; position: absolute; width: 500px; height: 500px;
+  border-radius: 50%; border: 1px solid rgba(212,175,55,0.1);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+.hero-label {
+  font-size: 11px; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--gold); opacity: 0.8; margin-bottom: 14px; position: relative; z-index: 1;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 7vw, 72px); color: white;
+  line-height: 1.1; margin-bottom: 18px; position: relative; z-index: 1;
+}
+.hero h1 span { color: var(--gold); font-style: italic; }
+.hero > p {
+  font-size: 15px; color: rgba(255,255,255,0.7);
+  max-width: 500px; line-height: 1.7; position: relative; z-index: 1;
+}
+.gold-line {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 20px auto 0; position: relative; z-index: 1;
+}
+
+/* ── DEVELOPER CARDS SECTION ── */
+.devs-section { padding: 80px 40px 100px; max-width: 1100px; margin: 0 auto; }
+.devs-grid { display: flex; flex-direction: column; gap: 60px; }
+
+/* ── FEATURED CARD ── */
+.dev-card {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  border-radius: 24px; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  background: white;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: slideUp 0.7s ease both;
+}
+.dev-card:nth-child(2) { animation-delay: 0.15s; }
+.dev-card:nth-child(3) { animation-delay: 0.3s; }
+.dev-card.reverse { grid-template-columns: 1fr 360px; }
+.dev-card.reverse .dev-photo { order: 2; }
+.dev-card.reverse .dev-info  { order: 1; }
+.dev-card:hover { transform: translateY(-8px); box-shadow: 0 32px 80px rgba(0,0,0,0.18); }
+
+/* ── PHOTO COLUMN — two half-body portrait slots stacked ── */
+.dev-photo {
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, var(--green-mid), var(--green-dark));
+  display: flex; flex-direction: column;
+  min-height: 560px; /* tall enough for 2 half-body shots */
+}
+
+/* Gold accent bar on left edge */
+.dev-photo::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  z-index: 2;
+}
+.dev-card.reverse .dev-photo::before { left: auto; right: 0; }
+
+/* Each photo slot = exactly half the column height */
+.photo-img {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.photo-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center; /* shows face + shoulders + chest */
+  display: block;
+  transition: transform 0.5s ease;
+}
+.dev-card:hover .photo-img img { transform: scale(1.04); }
+
+.photo-divider {
+  height: 2px; flex-shrink: 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ── INFO SIDE ── */
+.dev-info {
+  padding: 50px 48px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.dev-info::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-dim) 0%, transparent 70%);
+  pointer-events: none;
+}
+.dev-number {
+  font-family: 'Playfair Display', serif; font-size: 80px; font-weight: 700;
+  color: rgba(13,92,92,0.06); line-height: 1;
+  position: absolute; top: 20px; right: 30px; user-select: none;
+}
+.dev-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-dim); border: 1px solid rgba(212,175,55,0.3);
+  color: var(--green-mid); font-size: 10px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; width: fit-content;
+}
+.dev-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+}
+.dev-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3vw, 38px); font-weight: 700;
+  color: var(--green-dark); line-height: 1.2; margin-bottom: 8px;
+}
+.dev-name span { color: var(--green-mid); }
+.dev-role-title {
+  font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+}
+.dev-divider {
+  width: 50px; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent); margin-bottom: 24px;
+}
+.dev-roles { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.role-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: #f0fafa; border: 1px solid rgba(13,92,92,0.15);
+  border-radius: 30px; padding: 8px 18px;
+  font-size: 13px; font-weight: 500; color: var(--green-dark);
+}
+.role-pill svg { width: 16px; height: 16px; flex-shrink: 0; }
+.dev-desc {
+  font-size: 14px; line-height: 1.8; color: rgba(2,47,43,0.65);
+  border-left: 3px solid var(--gold-dim); padding-left: 16px;
+}
+
+/* ── BOTTOM STRIP ── */
+.team-strip {
+  background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+  padding: 60px 40px; text-align: center; color: white;
+}
+.team-strip h3 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 10px; }
+.team-strip p { font-size: 14px; opacity: 0.7; margin-bottom: 30px; }
+.back-btn {
+  display: inline-block; background: var(--gold); color: var(--green-dark);
+  padding: 12px 32px; border-radius: 30px;
+  text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s ease;
+}
+.back-btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+/* ── FOOTER ── */
+.footer {
+  background: linear-gradient(to bottom, #0D5C5C, #022f2b);
+  color: white; padding: 60px 80px 30px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.footer-top {
+  display: flex; justify-content: space-between; width: 100%;
+  flex-wrap: wrap; gap: 40px; max-width: 1200px;
+}
+.footer-column { max-width: 280px; }
+.footer-column h4 { margin-bottom: 15px; color: #d4af37; font-weight: 600; }
+.footer-column p { margin-bottom: 8px; font-size: 14px; opacity: 0.85; }
+.footer-logo { width: 250px; height: 250px; }
+.footer-nav { display: flex; flex-direction: column; gap: 6px; }
+.footer-nav a { text-decoration: none; color: white; font-size: 14px; opacity: 0.85; transition: all 0.3s ease; }
+.footer-nav a:hover { color: #d4af37; opacity: 1; }
+.footer-bottom {
+  width: 100%; text-align: center; margin-top: 40px; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.2); font-size: 13px; opacity: 0.7;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .dev-card, .dev-card.reverse { grid-template-columns: 1fr; }
+  .dev-card.reverse .dev-photo { order: 0; }
+  .dev-card.reverse .dev-info  { order: 1; }
+  .dev-photo { min-height: 480px; }
+  .dev-info { padding: 36px 28px; }
+  .navbar { padding: 15px 20px; }
+  .nav-links { gap: 16px; }
+}
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .devs-section { padding: 50px 20px 70px; }
+  .dev-photo { min-height: 360px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">
+    <img src="images/logo.png">
+    <span>JPIA<br><small>UE Caloocan</small></span>
+  </div>
+  <div class="nav-links">
+    <a href="main.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="what we do.html">What We Do</a>
+    <a href="activities.html">Activities</a>
+    <a href="members.html">Members</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html">Contact</a>
+    <a href="dev.html" class="active">Developer</a>
+  </div>
+  <a href="contact.html" class="join-btn">Join Us</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">JPIA UE Caloocan · MALASINAG 2025–2026</p>
+  <h1>Meet the <span>Developers</span></h1>
+  <p>The minds and hands behind this website — coders, designers, and builders who brought the MALASINAG vision to life.</p>
+  <div class="gold-line"></div>
+</section>
+
+<!-- DEVELOPER CARDS -->
+<section class="devs-section">
+  <div class="devs-grid">
+
+    <!-- DEV 1: Ezrael Buencamino -->
+    <div class="dev-card">
+      <div class="dev-photo">
+        <div class="photo-img">
+          <img src="images/dev/ezrael1.jpg" alt="Ezrael Buencamino - Photo 1">
+        </div>
+        <div class="photo-divider"></div>
+        <div class="photo-img">
+          <img src="images/dev/ezrael2.jpg" alt="Ezrael Buencamino - Photo 2">
+        </div>
+      </div>
+      <div class="dev-info">
+        <div class="dev-number">01</div>
+        <div class="dev-badge">Developer</div>
+        <h2 class="dev-name">Ezrael <span>Buencamino</span></h2>
+        <p class="dev-role-title">Coder &amp; Designer</p>
+        <div class="dev-divider"></div>
+        <div class="dev-roles">
+          <div class="role-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Coder
+          </div>
+          <div class="role-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Designer
+          </div>
+        </div>
+        <p class="dev-desc">Responsible for building and styling key sections of the JPIA website, combining functional code with thoughtful visual design to create a seamless user experience.</p>
+      </div>
+    </div>
+
+    <!-- DEV 2: Jose Marie Dimla (reversed) -->
+    <div class="dev-card reverse">
+      <div class="dev-photo">
+        <div class="photo-img">
+          <img src="images/dev/josemarie1.jpg" alt="Jose Marie Dimla - Photo 1">
+        </div>
+        <div class="photo-divider"></div>
+        <div class="photo-img">
+          <img src="images/dev/josemarie2.jpg" alt="Jose Marie Dimla - Photo 2">
+        </div>
+      </div>
+      <div class="dev-info">
+        <div class="dev-number">02</div>
+        <div class="dev-badge">Developer</div>
+        <h2 class="dev-name">Jose Marie <span>Dimla</span></h2>
+        <p class="dev-role-title">Coder &amp; Designer</p>
+        <div class="dev-divider"></div>
+        <div class="dev-roles">
+          <div class="role-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Coder
+          </div>
+          <div class="role-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Designer
+          </div>
+        </div>
+        <p class="dev-desc">Contributed to the architecture and design of the website, ensuring every page reflects the identity and values of the JPIA MALASINAG Federation.</p>
+      </div>
+    </div>
+
+    <!-- DEV 3: Del Ashley Pasia -->
+    <div class="dev-card">
+      <div class="dev-photo">
+        <div class="photo-img">
+          <img src="images/dev/delashley1.jpg" alt="Del Ashley Pasia - Photo 1">
+        </div>
+        <div class="photo-divider"></div>
+        <div class="photo-img">
+          <img src="images/dev/delashley2.jpg" alt="Del Ashley Pasia - Photo 2">
+        </div>
+      </div>
+      <div class="dev-info">
+        <div class="dev-number">03</div>
+        <div class="dev-badge">Developer</div>
+        <h2 class="dev-name">Del Ashley <span>Pasia</span></h2>
+        <p class="dev-role-title">Coder &amp; Designer</p>
+        <div class="dev-divider"></div>
+        <div class="dev-roles">
+          <div class="role-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Coder
+          </div>
+          <div class="role-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Designer
+          </div>
+        </div>
+        <p class="dev-desc">Played a vital role in the visual storytelling and technical development of the website, crafting layouts and interactions that elevate the JPIA brand online.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TEAM STRIP -->
+<div class="team-strip">
+  <h3>Built with dedication for MALASINAG</h3>
+  <p>United under one flame, we rise — We are MALASINAG</p>
+  <a href="main.html" class="back-btn">← Back to Home</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <img src="images/logo.png" alt="JPIA Logo" class="footer-logo">
+    <div class="footer-column logo-col">
+      <h4>JPIA</h4>
+      <p>UE Caloocan</p>
+      <p>Developing future accounting professionals through academic excellence and leadership.</p>
+    </div>
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="what we do.html">What We Do</a>
+        <a href="activities.html">Activities</a>
+        <a href="members.html">Members</a>
+        <a href="news.html">News</a>
+        <a href="dev.html">Developers</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div class="footer-column">
+      <h4>Developers</h4>
+      <p>Contact</p>
+      <p>jpia.uecaloocan@gmail.com</p>
+      <p>+63 123 456 7890</p>
+      <p>University of the East Caloocan Campus, Caloocan City, Philippines</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 JPIA UE Caloocan | MALASINAG Administration
+  </div>
+</footer>
+
+</body>
+</html>

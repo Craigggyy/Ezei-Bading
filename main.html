@@ -415,6 +415,26 @@ body{
     
 }
 
+/* Footer Nav Links */
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #d4af37; /* gold hover effect */
+    opacity: 1;
+}
+
 /* NEWSLETTER FORM */
 .newsletter-form {
     display: flex;
@@ -595,13 +615,17 @@ body{
 
         <!-- Quick Links -->
         <div class="footer-column">
-            <h4>Quick Links</h4>
-            <p>About</p>
-            <p>What We Do</p>
-            <p>Activities</p>
-            <p>Members</p>
-            <p>News</p>
-        </div>
+    <h4>Quick Links</h4>
+    <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="what we do.html">What We Do</a>
+        <a href="activities.html">Activities</a>
+        <a href="members.html">Members</a>
+        <a href="news.html">News</a>
+        <a href="developers.html">Developers</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</div>
 
         <!-- Developers & Contact -->
         <div class="footer-column">
